@@ -41,6 +41,8 @@ public class BouncingBall extends JFrame {
 	int rightPaddleHeight = 100;
 	//Mouse
 	int mouseX = 0, mouseY =0;
+	//couter
+	int leftCounter = 0,rightCounter=0;
 	
 	/**
 	 * Constructor
@@ -88,6 +90,11 @@ if(e.getKeyCode()== KeyEvent.VK_UP){
 				if (x < 0 || x > WIDTH - size) {
 					xSpeed = -xSpeed;
 					changeBallColor();
+					if(x<0){
+						leftCounter++;
+					}else if(x> WIDTH - size){
+						rightCounter++;
+					}
 				}
 				//Reverse the direction of the ball if it hits the top or bottom wall
 				if (y < 0 || y > HEIGHT - size) {
@@ -147,6 +154,9 @@ if(e.getKeyCode()== KeyEvent.VK_UP){
 			//Right Paddle
 			int rightPaddleX = getWidth()-paddleWidth;
 			g.fillRect(rightPaddleX, rightPaddleY, paddleWidth, rightPaddleHeight);
+			//Counter
+			g.drawString(""+leftCounter, 20,20);
+			g.drawString(""+rightCounter,20,40);
 			
 			//Debug
 			long duration = System.nanoTime() - start;
